@@ -1,13 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
+import router from './router/index.js'
 import {store} from './store/store'
-//import $ from 'jquery'
 import mapFunc from '@/methods/mapFunc.js'
+import BootstrapVue from 'bootstrap-vue'
+import './assets/css/global.scss'
+//import $ from 'jquery'
 
 Vue.config.productionTip = false
 Vue.prototype.mapFunc = mapFunc;
+Vue.use(BootstrapVue)
+//Vue.prototype.$ = require('jquery');
 
+//Vue.use($);
+//global.$=$;
 new Vue({
   store: store,
-  render: h => h(App),
-}).$mount('#app')
+  el: '#app',
+  router,
+  render: h => h(App)
+})

@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <h1>{{name}}</h1>
-        <h2>{{bound}}</h2>
+    <div :id="id">
+        <h1>{{nameSZ}}</h1>
     </div>
 </template>
 
@@ -10,18 +9,19 @@ export default {
     name: 'introTop',
     data(){
         return {
+            id: 'introTop',
             bound: null
         }
     },
     
     computed: {
-        name(){
-            return this.$store.getters.name;
+        nameSZ(){
+            return this.$store.getters.nameSZ;
         }
     },
 
     mounted(){
-        this.init();
+        //this.init();
     },
 
     methods:{

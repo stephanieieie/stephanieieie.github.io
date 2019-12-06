@@ -1,7 +1,12 @@
 <template>
-  <div id="app">
-    <introTop></introTop>
-    <mapSZ></mapSZ>
+  <div :id="id">
+    <navSide></navSide>
+    <div id="content">
+      <introTop></introTop>
+      <div id="contentBottom">
+        <mapSZ></mapSZ>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,13 +14,20 @@
 //import HelloWorld from './components/HelloWorld.vue'
 import introTop from './components/introTop.vue'
 import mapSZ from './components/mapSZ.vue'
+import navSide from './components/navSide.vue'
 
 export default {
   name: 'app',
   components: {
     //HelloWorld,
     introTop,
-    mapSZ
+    mapSZ,
+    navSide
+  },
+  data(){
+    return {
+      id: 'app'
+    }
   }
 }
 </script>

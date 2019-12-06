@@ -1,5 +1,5 @@
 <template>
-    <div id="mapSZ">
+    <div :id="id">
     </div>
 </template>
 
@@ -10,6 +10,7 @@ export default {
     components: {},
     data(){
         return {
+            id: 'mapSZ',
             map: null
         }
     },
