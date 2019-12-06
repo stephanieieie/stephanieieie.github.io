@@ -24,12 +24,12 @@ export default {
     },
     
     updated(){
-        this.rePosition();
+        //this.rePosition();
     },
 
     mounted(){
         this.$nextTick(function() {
-            this.rePosition();
+            //this.rePosition();
         })
     },
 
