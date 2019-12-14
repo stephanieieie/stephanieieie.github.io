@@ -26,9 +26,14 @@ export default {
 
     methods:{
         init(){
-            this.$nextTick(()=>{
+            this.getSize();
+            /* this.$nextTick(()=>{
                 this.getBound();
-            })
+            }) */
+        },
+        getSize(){
+            var h = $(window).height();
+            $("#introTop").css("height",h);
         },
         getBound(){
             this.bound = this.mapFunc.getBound();
