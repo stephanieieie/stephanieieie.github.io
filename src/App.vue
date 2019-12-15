@@ -5,6 +5,7 @@
       <navSide></navSide>
       <div id="content">
         <mapSZ></mapSZ>
+        <infoSZ></infoSZ>
       </div>
     </div>
   </div>
@@ -15,6 +16,7 @@
 import introTop from './components/introTop.vue'
 import mapSZ from './components/mapSZ.vue'
 import navSide from './components/navSide.vue'
+import infoSZ from './components/infoSZ.vue'
 
 export default {
   name: 'app',
@@ -22,6 +24,7 @@ export default {
     //HelloWorld,
     introTop,
     mapSZ,
+    infoSZ,
     navSide
   },
   data(){
@@ -42,6 +45,7 @@ export default {
       var h = $(window).height();
       $("#introTop").css("height",h);
       $("#bottom").css("height",h);
+
       $(window).resize(function(){
         var h = $(window).height();
         $("#introTop").css("height",h);
@@ -55,6 +59,8 @@ export default {
         }
         $("#mapCon").css("height",l);
         $("#mapCon").css("width",l);
+        $(".infoPart").css("height",l);
+        $(".infoPart").css("width",l);
       });
     }
 

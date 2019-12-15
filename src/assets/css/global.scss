@@ -10,6 +10,7 @@ h2{
 
 #app{
     margin-top: 0px;
+    overflow: hidden;
 }
 #introTop{
     background-image: url("~@/assets/img/mapFigure.jpg");
@@ -38,6 +39,12 @@ h2{
                 position: relative;
                 top: 10%;
                 left: 10%;
+            }
+            #location{
+                position: relative;
+                bottom: -70px;
+                color: black;
+                z-index: 1;
             }
         }
     }

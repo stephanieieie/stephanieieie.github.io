@@ -1,33 +1,35 @@
 <template>
     <div :id="id">
-        <b-nav vertical>
-            <b-nav-item v-for="c in categoties" :key="c">{{c}}</b-nav-item>
+        <b-nav pills vertical v-b-scrollspy:infoSZ>
+            <b-nav-item>About Me</b-nav-item>
+            <template v-for="(c,index) in categoties">
+                <b-nav-item v-if="index==0" active :key="index" :href="c.secId" class='navItemSZ'>{{c.label}}</b-nav-item>
+                <b-nav-item v-else :key="index" :href="c.secId" class='navItemSZ'>{{c.label}}</b-nav-item>
+            </template>
         </b-nav>
     </div>
 </template>
 
 <script>
-import $ from 'jquery'
 export default {
     name: "navSide",
     data () {
         return {
-            id: "navSide",
-            categoties: [
-                "About Me",
-                "Education",
-                "Experience",
-                "Portfolio",
-                "Interests"
-                ]
+            id: "navSide"
         }
     },
     
-    updated(){
-        //this.rePosition();
+    computed: {
+        categoties(){
+            return this.$store.getters.categoties;
+        }
     },
 
     mounted(){
+        $(".navItemSZ .nav-link").click(function(){
+            $(".navItemSZ .nav-link").removeClass("active");
+            $(this).addClass("active");
+        }),
         this.$nextTick(function() {
             //this.rePosition();
         })

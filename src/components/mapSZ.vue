@@ -1,6 +1,7 @@
 <template>
     <div :id="id">
         <div id="mapCon"></div>
+        <div id="location">{{location}}</div>
     </div>
 </template>
 
@@ -12,7 +13,8 @@ export default {
     data(){
         return {
             id: 'mapSZ',
-            map: null
+            map: null,
+            location: "Guangzhou, China"
         }
     },
     
