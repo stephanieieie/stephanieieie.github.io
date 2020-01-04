@@ -1,37 +1,17 @@
 <template>
     <div :id="id">
-        <b-carousel
-            style="text-shadow: 0px 0px 2px #000"
-            no-animation
-            indicators
-        >
-            <b-carousel-slide>
-                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="resume-content">
-                        <h3 class="mb-0">University of Illinois at Urbana Champaign</h3>
-                        <div class="subheading mb-3">Master of Science</div>
-                        <div>Geographic Information Science</div>
-                        <p>GPA: 3.23</p>
-                    </div>
-                    <div class="resume-date text-md-right">
-                        <span class="text-primary">August 2016 - December 2017</span>
-                    </div>
+        <template v-for="(v,index) in education">
+            <div :id="v.id" class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" :key="index">
+                <div class="resume-content">
+                    <h4 class="mb-0">{{v.school}}</h4>
+                    <div class="subheading mb-3">{{v.degree}}</div>
+                    <div>{{v.subject}}</div>
                 </div>
-            </b-carousel-slide>
-            <b-carousel-slide>
-                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="resume-content">
-                            <h3 class="mb-0">University of Toronto</h3>
-                            <div class="subheading mb-3">Bachelor of Arts</div>
-                            <div>Major in Urban Studies, Minor in German Studies</div>
-                            <p>GPA: 3.23</p>
-                        </div>
-                    <div class="resume-date text-md-right">
-                        <span class="text-primary">August 2011 - May 2015</span>
-                    </div>
+                <div class="resume-date text-md-right">
+                    <span>{{v.time}}</span>
                 </div>
-            </b-carousel-slide>
-        </b-carousel>
+            </div>
+        </template>
     </div>
 </template>
 
@@ -42,13 +22,16 @@ export default {
     components: {},
     data(){
         return {
-            id: 'education'
+            id: 'education'        
         }
     },
     
     computed: {
         categoties(){
             return this.$store.getters.categoties;
+        },
+        education(){
+            return this.$store.getters.education;
         }
     },
 
@@ -58,7 +41,19 @@ export default {
 
     methods:{
         init(){
-
+            var this_=this;
+            $(".resume-item").mouseover(function(e){
+                var target = $(this)[0];
+                this_.mapFunc.clkContent(target);
+                //$(this).css("background","#FF6347")
+                //console.log(t.id);
+            });
+            $(".resume-item").mouseout(function(e){
+                var target = $(this)[0];
+                this_.mapFunc.unclkContent(target);
+                //$(this).css("background","transparent")
+                //console.log(t.id);
+            });
         }
     }
 }

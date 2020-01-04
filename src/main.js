@@ -12,8 +12,9 @@ Vue.prototype.mapFunc = mapFunc;
 Vue.use(BootstrapVue)
 //Vue.prototype.$ = require('jquery');
 
-//Vue.use($);
-//global.$=$;
+var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+Vue.prototype.mapboxgl = mapboxgl;
+
 new Vue({
   store: store,
   el: '#app',

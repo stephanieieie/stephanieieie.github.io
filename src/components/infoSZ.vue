@@ -1,8 +1,10 @@
 <template>
-    <div :id="id" style="position:relative; height:300px; overflow-y:scroll;">
+    <div :id="id">
         <template v-for="(i,index) in categoties">
-            <h4 :id="i.id" :key="index">{{i.label}}</h4>
-            <component class="infoPart" v-bind:is="i.component" v-if="i.component"/>
+            <div :id="i.id" :key="index" class="infoPart">
+                <h1 class="infoTitle">{{i.label}}</h1>
+                <component class="infoContent" v-bind:is="i.component" v-if="i.component"/>
+            </div>
         </template>
     </div>
 </template>
@@ -49,8 +51,8 @@ export default {
             } else {
                 var l = h*0.8
             }
-            $(".infoPart").css("height",l);
-            $(".infoPart").css("width",l);
+            //$(".infoContent").css("height",l);
+            //$(".infoContent").css("width",l);
         },
     }
 }

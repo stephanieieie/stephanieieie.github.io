@@ -52,12 +52,13 @@ export default {
             var map = new mapboxgl.Map({
                 container: "mapCon",
                 style: "mapbox://styles/mapbox/streets-v10",
-                center: [114, 38.54],
+                center: [-88,40],
                 zoom: 3,
                 attributionControl: false
             });
             this.map = map;
             this.mapFunc.map=map;
+            this.mapFunc.addMarkers("education");
         }
     }
 }

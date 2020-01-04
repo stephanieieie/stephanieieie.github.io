@@ -45,11 +45,13 @@ export default {
       var h = $(window).height();
       $("#introTop").css("height",h);
       $("#bottom").css("height",h);
+      $("#bottom").css("min-height",h);
 
       $(window).resize(function(){
         var h = $(window).height();
         $("#introTop").css("height",h);
         $("#bottom").css("height",h);
+        $("#bottom").css("min-height",h);
         var h = $("#mapSZ").height();
         var w = $("#mapSZ").width();
         if (h>w) {
@@ -59,8 +61,8 @@ export default {
         }
         $("#mapCon").css("height",l);
         $("#mapCon").css("width",l);
-        $(".infoPart").css("height",l);
-        $(".infoPart").css("width",l);
+        //$(".infoContent").css("height",l);
+        //$(".infoContent").css("width",l);
       });
     }
 

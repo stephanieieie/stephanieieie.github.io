@@ -1,6 +1,10 @@
 <template>
     <div :id="id">
-        <h1>{{nameSZ}}</h1>
+        <div id="introCont">
+            <h1>{{nameSZ}}</h1>
+            <h3>GISer & Map Lover</h3>
+        </div>
+        <div id="scrollDown"></div>
     </div>
 </template>
 
