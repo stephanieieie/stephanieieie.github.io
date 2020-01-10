@@ -1,7 +1,8 @@
 <template>
     <div :id="id">
         <template v-for="(v,index) in education">
-            <div :id="v.id" class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" :key="index">
+            <div :id="v.id" class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" :key="index" 
+                @mouseover="overItem(v)" @mouseout="outItem(v)">
                 <div class="resume-content">
                     <h4 class="mb-0">{{v.school}}</h4>
                     <div class="subheading mb-3">{{v.degree}}</div>
@@ -54,6 +55,18 @@ export default {
                 //$(this).css("background","transparent")
                 //console.log(t.id);
             });
+        },
+        overItem(v){
+            var id = v.id;
+            var pos = v.pos;
+            var place = v.place;
+            this.mapFunc.clkContent(id, pos, place);
+        },
+        outItem(v){
+            var id = v.id;
+            var pos = v.pos;
+            var place = v.place;
+            this.mapFunc.unclkContent(id, pos, place);
         }
     }
 }

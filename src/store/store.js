@@ -39,7 +39,7 @@ export const store = new Vuex.Store({
                 degree: "Secondary School Diploma",
                 subject: null,
                 pos: [-79.289156, 43.877499],
-                place: "Toronto, Canada"
+                place: "Markham, Canada"
             }
         }
     },

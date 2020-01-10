@@ -65,13 +65,10 @@ export default{
             $("#"+id).removeClass('hover');
         }
     },
-    clkContent(target){
+    clkContent(id, pos, place){
         var map = this.map;
-        var id = target.id;
-        var pos = target.pos;
-        var place = target.place;
         $("#"+id+"_mk").addClass("hover");
-        /* var popup = new mapboxgl.Popup({
+        var popup = new mapboxgl.Popup({
             closeButton: false,
             closeOnClick: false,
             className: "popup",
@@ -80,10 +77,13 @@ export default{
         .setLngLat(pos)
         .setHTML(place)
         .addTo(map);
-        this.popup = popup; */
+        this.popup = popup;
     },
-    unclkContent(target){
-        var id = target.id;
+    unclkContent(id, pos, place){
         $("#"+id+"_mk").removeClass("hover");
+        if (this.popup) {
+            this.popup.remove();
+            this.popup = null;
+        }
     }
 }
