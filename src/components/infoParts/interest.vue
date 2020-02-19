@@ -16,8 +16,8 @@ export default {
     },
     
     computed: {
-        categoties(){
-            return this.$store.getters.categoties;
+        categories(){
+            return this.$store.getters.categories;
         }
     },
 

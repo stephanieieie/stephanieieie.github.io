@@ -2,7 +2,9 @@
 @import 'node_modules/bootstrap-vue/src/index.scss';
 
 $fontColor: #FF9800;
-$highlight: #CD5C5C;
+$edu: #0DAF7A;
+$exp: #CD5C5C;
+
 
 h1,
 h2{
@@ -99,11 +101,22 @@ h2{
                 top: 10%;
                 left: 10%;
             }
-            #location{
+            #mapLgd{
                 position: relative;
                 bottom: -70px;
                 color: black;
                 z-index: 1;
+                left: 200px;
+                text-align: left;
+                display: flex;
+                .lgd{
+                    display: flex;
+                    margin: 0px 5px;
+                    .lgdTxt{
+                        position: relative;
+                        top: 5px;
+                    }
+                }
             }
         }
         #infoSZ{
@@ -125,18 +138,22 @@ h2{
                         border-radius: 4px;
                         background: transparent;
                         &:hover{
-                            background: $highlight;
+                            //background: $highlight;
                             color: white;
-                            .resume-date{
-                                span{color:#F0E68C}
-                            }
+                            .resume-date{ span{color:#F0E68C}}
                         }
                         &.hover{
-                            background: $highlight;
+                            //background: $highlight;
                             color: white;
-                            .resume-date{
-                                span{color:#F0E68C}
-                            }
+                            .resume-date{span{color:#F0E68C}}
+                        }
+                        &.education{
+                            &:hover{background: $edu;}
+                            &.hover{background: $edu;}
+                        }
+                        &.experience{
+                            &:hover{background: $exp;}
+                            &.hover{background: $exp;}
                         }
                         .resume-content{
                             text-align: left;
@@ -149,31 +166,43 @@ h2{
                             //span{color: $fontColor;}
                         }
                     }
+                    .resume-descrp{
+                        text-align: left;
+                    }
                 }
             }
         }
     }
 }
 
-.marker{
-    background-image: url("~@/assets/img/marker.png");
+.marker_education{
+    background-image: url("~@/assets/img/markerEdu.png");
     width: 32px;
     height: 32px;
     cursor: pointer;
-    &.hover{
-        background-image: url("~@/assets/img/markerHigh.png");
-    }
+    /* &.hover{
+        background-image: url("~@/assets/img/markerEdu.png");
+    } */
+}
+.marker_experience{
+    background-image: url("~@/assets/img/markerExp.png");
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    /* &.hover{
+        background-image: url("~@/assets/img/markerExp.png");
+    } */
 }
 
 .popup{
     z-index: 2;
     .mapboxgl-popup-content{
-        background-color: $highlight;
+        background-color: $exp;
         color: white;
         font-size: 14px;
     }
     .mapboxgl-popup-tip {
         border-width: 6px;
-        border-top-color: $highlight;
+        border-top-color: $exp;
     }
 }

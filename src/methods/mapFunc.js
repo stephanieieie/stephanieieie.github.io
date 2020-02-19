@@ -27,13 +27,13 @@ export default{
             var id = data.id;
             var place = data.place;
             var pos = data.pos;
-            this.addMarker(id, place, pos);
+            this.addMarker(id, place, pos, activeId);
         }
     },
-    addMarker: function(id, place, pos){
+    addMarker: function(id, place, pos, activeId){
         var map =this.map;
         var div = document.createElement('div');
-        div.className = "marker";
+        div.className = "marker"+"_"+activeId;
         div.id = id+"_mk";
         var marker = new mapboxgl.Marker({
             element: div,
@@ -41,6 +41,8 @@ export default{
         }).setLngLat(pos).addTo(map);
         this.markers[id]=marker;
         var this_ = this;
+        var active = store.getters.categories.filter(a => a.component==activeId);
+        var bgColor = active[0].color;
         div.onmouseover = function(){
             var popup = new mapboxgl.Popup({
                 closeButton: false,
@@ -50,11 +52,19 @@ export default{
             })
             .setLngLat(pos)
             .setHTML(place)
-            .addTo(map);
+            .addTo(map); 
             this_.popup = popup;
             $(this).addClass('hover');
-            var a = $("#"+id);
+            //var a = $("#"+id);
             $("#"+id).addClass('hover');
+            $(".mapboxgl-popup-content").css("background-color",bgColor);
+            $(".mapboxgl-popup-tip").css("border-top-color", bgColor);
+            this_.map.flyTo({
+                center: pos,
+                zoom: 12,
+                speed: 2,
+                curve: 1
+            });
         }
         div.onmouseout = function(){
             if (this_.popup) {
@@ -65,7 +75,15 @@ export default{
             $("#"+id).removeClass('hover');
         }
     },
-    clkContent(id, pos, place){
+    rmMarker: function(){
+        var mks = this.markers;
+        for (var m in mks){
+            var mk = mks[m];
+            mk.remove();
+        }
+        this.markers = {};
+    },
+    clkContent(id, pos, place, bgColor){
         var map = this.map;
         $("#"+id+"_mk").addClass("hover");
         var popup = new mapboxgl.Popup({
@@ -78,6 +96,14 @@ export default{
         .setHTML(place)
         .addTo(map);
         this.popup = popup;
+        $(".mapboxgl-popup-content").css("background-color",bgColor);
+        $(".mapboxgl-popup-tip").css("border-top-color", bgColor);
+        this.map.flyTo({
+            center: pos,
+            zoom: 12,
+            speed: 2,
+            curve: 1
+        });
     },
     unclkContent(id, pos, place){
         $("#"+id+"_mk").removeClass("hover");
@@ -85,5 +111,11 @@ export default{
             this.popup.remove();
             this.popup = null;
         }
+        this.map.flyTo({
+            center: pos,
+            zoom: 5,
+            speed: 2,
+            curve: 1
+        });
     }
 }

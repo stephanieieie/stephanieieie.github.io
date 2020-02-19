@@ -1,7 +1,16 @@
 <template>
     <div :id="id">
         <div id="mapCon"></div>
-        <div id="location">{{location}}</div>
+        <div id="mapLgd">
+            <div class="lgd">
+                <div class="marker_education"></div>
+                <div class="lgdTxt">Study</div>
+            </div>
+            <div class="lgd">
+                <div class="marker_experience"></div>
+                <div class="lgdTxt">Work</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -19,6 +28,9 @@ export default {
     },
     
     computed: {
+        active(){
+            return this.$store.getters.active;
+        },
         name(){
             return this.$store.getters.name;
         }
@@ -26,6 +38,9 @@ export default {
 
     mounted(){
         this.init();
+    },
+
+    watch:{
     },
 
     methods:{
@@ -53,12 +68,13 @@ export default {
                 container: "mapCon",
                 style: "mapbox://styles/mapbox/streets-v10",
                 center: [-84,41],
-                zoom: 4.5,
+                zoom: 3,
                 attributionControl: false
             });
             this.map = map;
             this.mapFunc.map=map;
             this.mapFunc.addMarkers("education");
+            this.mapFunc.addMarkers("experience");
         }
     }
 }

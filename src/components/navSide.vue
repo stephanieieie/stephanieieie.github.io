@@ -1,25 +1,17 @@
 <template>
     <div :id="id">
         <b-nav pills vertical v-b-scrollspy:infoSZ>
-            <b-nav-item>About Me</b-nav-item>
-            <template v-for="(c,index) in categoties">
-                <b-nav-item v-if="index==0" active 
-                    :key="index" 
-                    :href="c.secId" 
-                    :id="c.component"
-                    class='navItemSZ'
-                >
-                    {{c.label}}
-                </b-nav-item>
-                <b-nav-item v-else 
-                    :key="index" 
-                    :href="c.secId" 
-                    :id="c.component"
-                    class='navItemSZ'
-                >
-                    {{c.label}}
-                </b-nav-item>
-            </template>
+            <b-nav-item>About Me</b-nav-item>            
+            <b-nav-item
+                v-for="(c,index) in categories"
+                :key="index" 
+                :href="c.secId" 
+                :id="c.component"
+                class='navItemSZ'
+                v-bind:active="active==c.component"
+            >
+                {{c.label}}
+            </b-nav-item>
         </b-nav>
     </div>
 </template>
@@ -34,23 +26,27 @@ export default {
     },
     
     computed: {
-        categoties(){
-            return this.$store.getters.categoties;
+        categories(){
+            return this.$store.getters.categories;
         },
         active(){
             return this.$store.getters.active;
         }
     },
 
+    updated(){
+        debugger
+    },
+
     mounted(){
         var this_ = this;
-        //this_.mapFunc.addMarkers("education");
         $(".navItemSZ .nav-link").click(function(){
+            this_.mapFunc.rmMarker();
             $(".navItemSZ .nav-link").removeClass("active");
             $(this).addClass("active");
             var activeId = $(this)[0].parentNode.id;
             this_.$store.commit("chgActive",activeId);
-            this_.mapFunc.addMarkers(activeId);
+            //this_.mapFunc.addMarkers(activeId);
         }),
         this.$nextTick(function() {
             //this.rePosition();

@@ -1,15 +1,18 @@
 <template>
     <div :id="id">
         <template v-for="(v,index) in education">
-            <div :id="v.id" class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" :key="index" 
+            <div :id="v.id" class="resume-item education mb-5" :key="index" 
                 @mouseover="overItem(v)" @mouseout="outItem(v)">
-                <div class="resume-content">
-                    <h4 class="mb-0">{{v.school}}</h4>
-                    <div class="subheading mb-3">{{v.degree}}</div>
-                    <div>{{v.subject}}</div>
-                </div>
-                <div class="resume-date text-md-right">
-                    <span>{{v.time}}</span>
+                <div class="resume-overview d-flex flex-column flex-md-row justify-content-between">
+                    <div class="resume-content">
+                        <h4 class="mb-0">{{v.school}}</h4>
+                        <div class="subheading mb-3">{{v.degree}}</div>
+                        <div>{{v.subject}}</div>
+                    </div>
+                    <div class="resume-date text-md-right">
+                        <div>{{v.place}}</div>
+                        <div>{{v.time}}</div>
+                    </div>
                 </div>
             </div>
         </template>
@@ -28,8 +31,8 @@ export default {
     },
     
     computed: {
-        categoties(){
-            return this.$store.getters.categoties;
+        categories(){
+            return this.$store.getters.categories;
         },
         education(){
             return this.$store.getters.education;
@@ -43,24 +46,26 @@ export default {
     methods:{
         init(){
             var this_=this;
-            $(".resume-item").mouseover(function(e){
-                var target = $(this)[0];
-                this_.mapFunc.clkContent(target);
+            /* $(".resume-item").mouseover(function(e){
+                var target = $(this)[0].id;
+                //this_.mapFunc.clkContent(target);
                 //$(this).css("background","#FF6347")
                 //console.log(t.id);
             });
             $(".resume-item").mouseout(function(e){
-                var target = $(this)[0];
-                this_.mapFunc.unclkContent(target);
+                var target = $(this)[0].id;
+                //this_.mapFunc.unclkContent(target);
                 //$(this).css("background","transparent")
                 //console.log(t.id);
-            });
+            }); */
         },
         overItem(v){
             var id = v.id;
             var pos = v.pos;
             var place = v.place;
-            this.mapFunc.clkContent(id, pos, place);
+            var active = this.$store.getters.categories.filter(a => a.component==this.id);
+            var bgColor = active[0].color;
+            this.mapFunc.clkContent(id, pos, place, bgColor);
         },
         outItem(v){
             var id = v.id;

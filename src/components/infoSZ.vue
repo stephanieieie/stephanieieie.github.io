@@ -1,6 +1,6 @@
 <template>
     <div :id="id">
-        <template v-for="(i,index) in categoties">
+        <template v-for="(i,index) in categories">
             <div :id="i.id" :key="index" class="infoPart">
                 <h1 class="infoTitle">{{i.label}}</h1>
                 <component class="infoContent" v-bind:is="i.component" v-if="i.component"/>
@@ -30,8 +30,8 @@ export default {
     },
     
     computed: {
-        categoties(){
-            return this.$store.getters.categoties;
+        categories(){
+            return this.$store.getters.categories;
         }
     },
 
