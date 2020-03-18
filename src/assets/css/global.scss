@@ -84,6 +84,13 @@ h2{
                 background-color: $fontColor;
             }
         }
+        #resumeNav{
+            border-radius: 3px;
+            &.active{
+                background-color: gray;
+                a{color: white};
+            }
+        }
     }
     #content{
         width: 85%;
@@ -96,25 +103,45 @@ h2{
             float: left;
             height: inherit;
             //border: 1px black solid;
-            #mapCon{
+            #mapBx{
                 position: relative;
                 top: 10%;
                 left: 10%;
-            }
-            #mapLgd{
-                position: relative;
-                bottom: -70px;
-                color: black;
-                z-index: 1;
-                left: 200px;
-                text-align: left;
-                display: flex;
-                .lgd{
+                #mapLgd{
+                    position: relative;
+                    bottom: -10px;
+                    color: black;
+                    z-index: 1;
+                    text-align: left;
                     display: flex;
-                    margin: 0px 5px;
-                    .lgdTxt{
-                        position: relative;
-                        top: 5px;
+                    justify-content: center;
+                    #lgdCon{
+                        display: block;
+                        .lgd{
+                            display: flex;
+                            float: left;
+                            margin: 0px 5px;
+                            .lgdTxt{
+                                position: relative;
+                                top: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+            #portImg{
+                position: relative;
+                top: 10%;
+                height: 80%;
+                border: #FF9800 solid 1px;
+                z-index: 2;
+                #portCarousel{
+                    height: 100%;
+                    .carousel-inner{
+                        height: 100%;
+                        .carousel-item{
+                            height: 100%;
+                        }
                     }
                 }
             }
@@ -133,6 +160,7 @@ h2{
                     //top: 50px;
                 }
                 .infoContent{
+                    overflow-y: scroll;
                     .resume-item{
                         padding: 5px;
                         border-radius: 4px;
@@ -169,13 +197,48 @@ h2{
                     .resume-descrp{
                         text-align: left;
                     }
+                    #intCarousel{
+                        height: 100%;
+                        .carousel-inner{
+                            height: 100%;
+                            .carousel-item{
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+            #resumeDiag{
+                border-radius: 5px;
+                .el-dialog__header{
+                    background-color: gray;
+                    height: 40px;
+                    padding: 10px 20px;
+                    .header-title{
+                        float: left;
+                        color: white;
+                    }
+                    .el-dialog__headerbtn {
+                        top: 10px;
+                        cursor: pointer;
+                        i{
+                            color: lightgray;
+                            &:hover{color: white}
+                        }
+                    }
+                }
+                .dialogCont{
+                    iframe{
+                        width: 100%;
+                        height: 350px;
+                    }
                 }
             }
         }
     }
 }
 
-.marker_education{
+.marker_edu{
     background-image: url("~@/assets/img/markerEdu.png");
     width: 32px;
     height: 32px;
@@ -184,7 +247,7 @@ h2{
         background-image: url("~@/assets/img/markerEdu.png");
     } */
 }
-.marker_experience{
+.marker_exp{
     background-image: url("~@/assets/img/markerExp.png");
     width: 32px;
     height: 32px;

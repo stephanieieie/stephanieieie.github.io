@@ -7,13 +7,13 @@ export const store = new Vuex.Store({
     state: {
         nameSZ: "Stephanie Zhang",
         categories: [
-            {id:"Edu",secId:"#Edu",label:"Education",component:"education",color:"#0DAF7A"},
-            {id:"Exp",secId:"#Exp",label:"Experience",component:"experience",color:"#CD5C5C"},
-            {id:"Port",secId:"#Port",label:"Portfolio",component:"portfolio",color:""},
-            {id:"Int",secId:"#Int",label:"Interests",component:"interest",color:""}
+            {id:"edu",secId:"#edu",navId:"eduNav",label:"Education",color:"#0DAF7A"},
+            {id:"exp",secId:"#exp",navId:"expNav",label:"Experience",color:"#CD5C5C"},
+            {id:"port",secId:"#port",navId:"portNav",label:"Portfolio",color:""},
+            {id:"int",secId:"#int",navId:"intNav",label:"Interests",color:""}
         ],
-        active: "education",
-        education:{
+        activeNav: "edu",
+        edu:{
             eduMaster:{
                 id: "eduMaster",
                 school: "University of Illinois at Urbana-Champaign",
@@ -42,7 +42,7 @@ export const store = new Vuex.Store({
                 place: "Markham, Canada"
             }
         },
-        experience:{
+        exp:{
             exp3:{
                 id: "exp3",
                 company: "HAOYA INFORMATION TECHNOLOGY",
@@ -100,18 +100,33 @@ export const store = new Vuex.Store({
                 pos: [113.457893, 23.160586],
                 place: "Guangzhou, China"
             },
-        }
+        },
+        showResume: false,
+        showPortImg: false
     },
     getters: {
         nameSZ: state => state.nameSZ,
         categories: state => state.categories,
-        active: state => state.active,
-        education: state => state.education,
-        experience: state => state.experience
+        activeNav: state => state.activeNav,
+        edu: state => state.edu,
+        exp: state => state.exp,
+        showResume: state => state.showResume,
+        showPortImg: state => state.showPortImg
     },
     mutations: {
-        chgActive: (state, active) => {
-            state.active = active;
-        }
+        chgActiveNav: (state, id) => {
+            state.activeNav = id;
+            if (id=="port"){
+                state.showPortImg=true;
+            } else {
+                state.showPortImg=false;
+            }
+        },
+        chgShowResume: (state, status) => {
+            state.showResume = status;
+        }/* ,
+        chgShowPortImg: (state, status) => {
+            state.showPortImg = status;
+        } */
     }
 })

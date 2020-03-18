@@ -2,18 +2,30 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
 import {store} from './store/store'
-import mapFunc from '@/methods/mapFunc.js'
-import BootstrapVue from 'bootstrap-vue'
 import './assets/css/global.scss'
-//import $ from 'jquery'
 
-Vue.config.productionTip = false
+//global mapFunc
+import mapFunc from '@/methods/mapFunc.js'
 Vue.prototype.mapFunc = mapFunc;
-Vue.use(BootstrapVue)
-//Vue.prototype.$ = require('jquery');
 
+//import Boostrap
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+
+//import element-ui
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI) 
+
+//use mapbox
 var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
 Vue.prototype.mapboxgl = mapboxgl;
+
+//import axios
+import axios from 'axios'
+Vue.prototype.axios = axios;
+
+Vue.config.productionTip = false
 
 new Vue({
   store: store,

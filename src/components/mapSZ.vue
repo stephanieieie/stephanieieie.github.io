@@ -1,15 +1,44 @@
 <template>
     <div :id="id">
-        <div id="mapCon"></div>
-        <div id="mapLgd">
-            <div class="lgd">
-                <div class="marker_education"></div>
-                <div class="lgdTxt">Study</div>
+        <div id="mapBx" v-show="!showPortImg">
+            <div id="mapCon"></div>
+            <div id="mapLgd">
+                <div id="lgdCon">
+                    <div class="lgd">
+                        <div class="marker_edu"></div>
+                        <div class="lgdTxt">Study</div>
+                    </div>
+                    <div class="lgd">
+                        <div class="marker_exp"></div>
+                        <div class="lgdTxt">Work</div>
+                    </div>
+                </div>
             </div>
-            <div class="lgd">
-                <div class="marker_experience"></div>
-                <div class="lgdTxt">Work</div>
-            </div>
+        </div>
+        <div id="portImg" v-show="showPortImg">
+            <b-carousel
+                id="portCarousel"
+                v-model="portId"
+                :interval="50000"
+                controls
+                indicators
+                background="#ababab"
+                img-width="1024"
+                img-height="480"
+                style="text-shadow: 1px 1px 2px #333;"
+                @sliding-start="onSlideStart"
+                @sliding-end="onSlideEnd"
+                >
+                <b-carousel-slide caption="1stPort">
+                    <p>1st</p>
+                </b-carousel-slide>
+                <b-carousel-slide caption="2ndPort">
+                    <p>2nd</p>
+                </b-carousel-slide>
+                <b-carousel-slide caption="3rdPort">
+                    <p>3rd</p>
+                </b-carousel-slide>
+            </b-carousel>
         </div>
     </div>
 </template>
@@ -23,13 +52,15 @@ export default {
         return {
             id: 'mapSZ',
             map: null,
-            location: "Guangzhou, China"
+            location: "Guangzhou, China",
+            portId: 0,
+            sliding: null
         }
     },
     
     computed: {
-        active(){
-            return this.$store.getters.active;
+        showPortImg(){
+            return this.$store.getters.showPortImg;
         },
         name(){
             return this.$store.getters.name;
@@ -60,6 +91,8 @@ export default {
             }
             $("#mapCon").css("height",l);
             $("#mapCon").css("width",l);
+            $("#mapBx").css("width",l);
+            $(".infoContent").css("height",l);
         },
         initMap(){
             var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
@@ -73,8 +106,14 @@ export default {
             });
             this.map = map;
             this.mapFunc.map=map;
-            this.mapFunc.addMarkers("education");
-            this.mapFunc.addMarkers("experience");
+            this.mapFunc.addMarkers("edu");
+            this.mapFunc.addMarkers("exp");
+        },
+        onSlideStart(slide) {
+            this.sliding = true
+        },
+        onSlideEnd(slide) {
+            this.sliding = false
         }
     }
 }

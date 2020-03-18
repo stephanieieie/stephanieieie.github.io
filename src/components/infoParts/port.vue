@@ -1,17 +1,17 @@
 <template>
     <div :id="id">
-        INTERTEST
+        <div class="portImg"></div>
     </div>
 </template>
 
 <script>
 
 export default {
-    name: 'interest',
+    name: 'port',
     components: {},
     data(){
         return {
-            id: 'interest'
+            id: 'port'
         }
     },
     

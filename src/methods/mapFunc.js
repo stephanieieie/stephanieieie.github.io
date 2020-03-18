@@ -41,7 +41,7 @@ export default{
         }).setLngLat(pos).addTo(map);
         this.markers[id]=marker;
         var this_ = this;
-        var active = store.getters.categories.filter(a => a.component==activeId);
+        var active = store.getters.categories.filter(a => a.id==activeId);
         var bgColor = active[0].color;
         div.onmouseover = function(){
             var popup = new mapboxgl.Popup({
@@ -55,8 +55,10 @@ export default{
             .addTo(map); 
             this_.popup = popup;
             $(this).addClass('hover');
-            //var a = $("#"+id);
             $("#"+id).addClass('hover');
+            $("#"+id)[0].scrollIntoView({
+                behavior: "smooth", block: "center"
+            })
             $(".mapboxgl-popup-content").css("background-color",bgColor);
             $(".mapboxgl-popup-tip").css("border-top-color", bgColor);
             this_.map.flyTo({
@@ -83,7 +85,7 @@ export default{
         }
         this.markers = {};
     },
-    clkContent(id, pos, place, bgColor){
+    clkContent: function(id, pos, place, bgColor){
         var map = this.map;
         $("#"+id+"_mk").addClass("hover");
         var popup = new mapboxgl.Popup({
@@ -113,7 +115,7 @@ export default{
         }
         this.map.flyTo({
             center: pos,
-            zoom: 5,
+            zoom: 4,
             speed: 2,
             curve: 1
         });
